@@ -24,16 +24,19 @@ class Nbtrain:
 		self.smooth()
 		self.output()
 	def output(self):
-		self.file_out.write(str(self.number_of_class))
-		print self.number_of_class
+		self.file_out.write(str(self.number_of_class)+"\n")
+		##print self.number_of_class
 		for n in self.number_of_document_in_class:
-			print n,self.number_of_total_doc
-			self.file_out.write(str(math.log(float(n)/self.number_of_total_doc)))
+			##print n,self.number_of_total_doc
+			self.file_out.write(str(math.log(float(n)/self.number_of_total_doc))+"\n")
 		for k,v in self.map.items():
 			for index in range(len(v)):
 				print k,v[index],self.number_of_word_in_class[index]
 				v[index]=math.log(float(v[index])/self.number_of_word_in_class[index])
+		self.unknown()
+		self.file_out.write(cPickle.dumps(self.number_of_word_in_class))
 		self.file_out.write(cPickle.dumps(self.map))
+
 	def smooth(self):
 		##here i choose the add one method to smooth the training data
 		word_num=len(self.map)
@@ -41,8 +44,8 @@ class Nbtrain:
 
 		for k,v in self.map.items():
 			self.map[k]=map(lambda x:x+1 ,v)
-        
-
+	def unknown(self):
+		self.number_of_word_in_class=[ math.log(1.0/(x+1)) for x in self.number_of_word_in_class]
 
 if __name__ == '__main__':
 	if len(sys.argv)<3:
