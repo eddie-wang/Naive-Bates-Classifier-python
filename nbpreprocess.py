@@ -15,6 +15,7 @@ class Preprocess:
 				file_in=open(os.path.join(file_path,file_in_name))
 				file_out.write(' '.join([self.check(word) for word in file_in.read().split()]))
 
+	
 	def check(self,word):
 		word=word.lower();
 		##if re.match('\d',word):

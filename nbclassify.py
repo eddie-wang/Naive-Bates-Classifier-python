@@ -8,7 +8,6 @@ class Nbclassify:
 		self.map={}
 		self.p_unknown=[]
 	def classify(self):
-		 
 		content=Preprocess([]).singlefile(self.classify_file);
 		class_number = int(self.model_file.readline())
 		p_classes=[]

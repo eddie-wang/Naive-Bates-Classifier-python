@@ -23,6 +23,7 @@ class Nbtrain:
 				self.number_of_word_in_class[index]+=1
 		self.smooth()
 		self.output()
+		
 	def output(self):
 		self.file_out.write(str(self.number_of_class)+"\n")
 		##print self.number_of_class
