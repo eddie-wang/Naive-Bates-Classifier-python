@@ -9,7 +9,7 @@ class Preprocess:
 		output=""
 		for file_path in self.pathlist:
 			##one directory
-			file_out=open(file_path[file_path.rfind("/")+1:]+".out","w")
+			file_out=open(file_path+".out","w")
 			file_out.write(str(len(os.listdir(file_path)))+"\n")
 			for file_in_name in os.listdir(file_path):
 				file_in=open(os.path.join(file_path,file_in_name))
